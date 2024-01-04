@@ -4,6 +4,7 @@
 /* Standard Libraries */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* Data Structures */
 
@@ -32,12 +33,13 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(monty_stack_t **stack, unsigned int line_number);
+	void (*f)(monty_stack_t **stack, unsigned int line_number, char *arg);
 } instruction_t;
 
 /* Function Prototypes */
-int main(void);
+int main(int argc, char *argv[]);
 void push(monty_stack_t **stack, unsigned int line_number, char *arg);
-void pall(monty_stack_t **stack, unsigned int line_number);
+void pall(monty_stack_t **stack, unsigned int line_number, char *arg);
+void monty_run(const char *file_name);
 
 #endif /* MONTY_H */
