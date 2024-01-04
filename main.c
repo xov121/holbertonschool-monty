@@ -11,7 +11,8 @@ void monty_run(const char *file_name)
 	size_t len = 0;
 	unsigned int line_number = 0;
 	monty_stack_t *stack = NULL;
-	instruction_t instructions[] = {{"push", push}, {"pall", pall}, {NULL, NULL}};
+	instruction_t instructions[] = {{"push", push}, {"pall", pall},
+	{"pint", pint}, {NULL, NULL}};
 
 	if (!file)
 	{
