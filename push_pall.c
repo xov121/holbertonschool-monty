@@ -46,9 +46,11 @@ void push(monty_stack_t **stack, unsigned int line_number, char *arg)
  * @stack: double pointer to the top of the stack
  * @line_number: line number in the script
 */
-void pall(monty_stack_t **stack, unsigned int line_number)
+void pall(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
     (void)line_number;
+    (void)arg;
+    
     monty_stack_t *current = *stack;
 
     while (current != NULL)
