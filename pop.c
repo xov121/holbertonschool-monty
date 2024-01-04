@@ -9,8 +9,6 @@
 void pop(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
 	monty_stack_t *temp;
-
-	printf("Stack is %s\n", (*stack == NULL) ? "empty" : "not empty");
 	(void)arg;
 
 	if (*stack == NULL)
