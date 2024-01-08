@@ -45,7 +45,6 @@ void monty_run(const char *file_name);
 void pint(monty_stack_t **stack, unsigned int line_number, char *arg);
 void pop(monty_stack_t **stack, unsigned int line_number, char *arg);
 void nop(monty_stack_t **stack, unsigned int line_number, char *arg);
-void add(monty_stack_t **stack, unsigned int line_number, char *arg);
 void swap(monty_stack_t **stack, unsigned int line_number, char *arg);
-
+void add(monty_stack_t **stack, unsigned int line_number, char *arg);
 #endif /* MONTY_H */
