@@ -11,6 +11,7 @@ void monty_run(const char *file_name)
 	size_t len = 0;
 	unsigned int line_number = 0;
 	monty_stack_t *stack = NULL;
+	monty_stack_t *temp;
 	instruction_t instructions[] = {{"push", push}, {"pall", pall},
 	{"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop},
 	{"pint", pint}, {NULL, NULL}};
@@ -23,12 +24,12 @@ void monty_run(const char *file_name)
 
 	while (getline(&line, &len, file) != -1)
 	{
-		char *token = strtok(line, " $\n\t\r");
-
+		char *token = strtok(line, "$\n\t\r");
+		int i;
 		line_number++;
 		if (token)
 		{
-			for (int i = 0; instructions[i].opcode; i++)
+			for (i = 0; instructions[i].opcode; i++)
 			{
 				if (strcmp(token, instructions[i].opcode) == 0)
 				{
@@ -38,13 +39,15 @@ void monty_run(const char *file_name)
 		}
 	}
 }
-free(line);
-fclose(file);
+	free(line);
+	fclose(file);
 
-for (monty_stack_t *temp; stack; stack = temp)
-{
-	temp = stack->next;
-	free(stack);
+	temp = stack;
+	while (stack)
+	{
+		stack = temp->next;
+		free(temp);
+		temp = stack;
 	}
 }
 

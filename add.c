@@ -8,7 +8,7 @@
 void add(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
     monty_stack_t *temp;
-    (void)arg;  // Unused parameter, suppresses compiler warning
+    (void)arg;
 
     if (*stack == NULL || (*stack)->next == NULL)
     {
@@ -16,8 +16,8 @@ void add(monty_stack_t **stack, unsigned int line_number, char *arg)
         exit(EXIT_FAILURE);
     }
 
-    temp = (*stack)->next;
-    temp->n += (*stack)->n;  // Add the values of the top two elements
-    *stack = temp;           // Update the stack pointer to the second top element
-    free(*stack);            // Free the top element that is no longer needed
+	temp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->n += temp->n;
+	free(temp);
 }

@@ -49,14 +49,13 @@ void push(monty_stack_t **stack, unsigned int line_number, char *arg)
 */
 void pall(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
+	monty_stack_t *current = *stack;
 	(void)line_number;
 	(void)arg;
 
-		monty_stack_t *current = *stack;
-
-		while (current != NULL)
-		{
-			printf("%d\n", current->n);
-			current = current->next;
-		}
+	while (current != NULL)
+	{
+		printf("%d\n", current->n);
+		current = current->next;
+	}
 }

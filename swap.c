@@ -8,7 +8,7 @@
 void swap(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
     monty_stack_t *temp;
-    (void)arg;  // Unused parameter, suppresses compiler warning
+    (void)arg;
 
     if (*stack == NULL || (*stack)->next == NULL)
     {
@@ -21,4 +21,3 @@ void swap(monty_stack_t **stack, unsigned int line_number, char *arg)
     temp->next = *stack;
     *stack = temp;
 }
-
