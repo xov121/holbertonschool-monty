@@ -24,7 +24,7 @@ void monty_run(const char *file_name)
 
 	while (getline(&line, &len, file) != -1)
 	{
-		char *token = strtok(line, "$\n\t\r");
+		char *token = strtok(line, " \n\t\r");
 		int i;
 		line_number++;
 		if (token)
