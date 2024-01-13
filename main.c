@@ -43,7 +43,7 @@ void monty_run(const char *file_name)
 	fclose(file);
 
 	temp = stack;
-	while (stack)
+	while (temp)
 	{
 		stack = temp->next;
 		free(temp);

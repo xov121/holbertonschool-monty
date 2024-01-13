@@ -8,28 +8,33 @@
 */
 void push(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
-	int num;
 	monty_stack_t *new_node;
 
-	if (arg == NULL)
+	int num;
+	char *endptr;
+
+	if (arg == NULL || *arg == '\0')
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	num = atoi(arg);
-	if ((num == 0 && arg[0] != '0') || (num != 0 && arg[0] == '0'))
+	for (endptr = arg; *endptr; endptr++)
+	{
+	if (!isdigit(*endptr) && !(*endptr == '-' && endptr == arg))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	}
 
-		new_node = malloc(sizeof(monty_stack_t));
-		if (new_node == NULL)
-		{
-			fprintf(stderr, "Error: malloc failed\n");
-			exit(EXIT_FAILURE);
-		}
+	new_node = malloc(sizeof(monty_stack_t));
+	if (new_node == NULL)
+	{
+		(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
 		new_node->n = num;
 		new_node->prev = NULL;
