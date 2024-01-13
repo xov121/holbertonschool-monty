@@ -25,7 +25,7 @@ void monty_run(const char *file_name)
 	while (getline(&line, &len, file) != -1)
 	{
 		char *token = strtok(line, " \n\t\r");
-		int i;
+		int i, found = 0;
 		line_number++;
 		if (token)
 		{
@@ -34,8 +34,14 @@ void monty_run(const char *file_name)
 				if (strcmp(token, instructions[i].opcode) == 0)
 				{
 				instructions[i].f(&stack, line_number, strtok(NULL, " $\n\t\r"));
+				found = 1;
 				break;
 			}
+		}
+		if (!found)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
+			exit(EXIT_FAILURE);
 		}
 	}
 }
