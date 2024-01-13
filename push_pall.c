@@ -9,7 +9,6 @@
 void push(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
 	monty_stack_t *new_node;
-
 	int num;
 	char *endptr;
 
@@ -32,7 +31,7 @@ void push(monty_stack_t **stack, unsigned int line_number, char *arg)
 	new_node = malloc(sizeof(monty_stack_t));
 	if (new_node == NULL)
 	{
-		(stderr, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
