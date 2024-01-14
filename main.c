@@ -7,53 +7,53 @@
 void monty_run(const char *file_name)
 {
 	FILE *file = fopen(file_name, "r");
-	char *line = NULL;
+	char *line = NULL, *token;
 	size_t len = 0;
 	unsigned int line_number = 0;
-	monty_stack_t *stack = NULL;
-	monty_stack_t *temp;
+	monty_stack_t *stack = NULL, *temp;
 	instruction_t instructions[] = {{"push", push}, {"pall", pall},
 	{"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop},
 	{"pint", pint}, {NULL, NULL}};
+	int i, found;
 
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", file_name);
 		exit(EXIT_FAILURE);
 	}
+		while (getline(&line, &len, file) != -1)
+		{
+			token = strtok(line, " \n\t\r");
+			line_number++, found = 0;
+				if (!token)
+				continue;
 
-	while (getline(&line, &len, file) != -1)
-	{
-		char *token = strtok(line, " \n\t\r");
-		int i, found = 0;
-		line_number++;
-		if (token)
-		{
-			for (i = 0; instructions[i].opcode; i++)
-			{
-				if (strcmp(token, instructions[i].opcode) == 0)
-				{
-				instructions[i].f(&stack, line_number, strtok(NULL, " $\n\t\r"));
-				found = 1;
-				break;
-			}
+				for (i = 0; instructions[i].opcode && !found; i++)
+				if (!strcmp(token, instructions[i].opcode))
+				instructions[i].f(&stack, line_number, strtok(NULL, " \n\t\r")), found = 1;
+					if (!found)
+					{
+						fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
+						fclose(file), free(line), free_stack(stack);
+						exit(EXIT_FAILURE);
+					}
 		}
-		if (!found)
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
-			exit(EXIT_FAILURE);
-		}
-	}
+	fclose(file), free(line), free_stack(stack);
 }
-	free(line);
-	fclose(file);
 
-	temp = stack;
-	while (temp)
+/**
+ * free_stack - Frees a stack.
+ * @stack: A pointer to the top of the stack.
+*/
+void free_stack(monty_stack_t *stack)
+{
+	monty_stack_t *temp;
+
+	while (stack != NULL)
 	{
-		stack = temp->next;
-		free(temp);
 		temp = stack;
+		stack->next;
+		free(temp);
 	}
 }
 
