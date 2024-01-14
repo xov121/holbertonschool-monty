@@ -10,7 +10,7 @@ void monty_run(const char *file_name)
 	char *line = NULL, *token;
 	size_t len = 0;
 	unsigned int line_number = 0;
-	monty_stack_t *stack = NULL, *temp;
+	monty_stack_t *stack = NULL;
 	instruction_t instructions[] = {{"push", push}, {"pall", pall},
 	{"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop},
 	{"pint", pint}, {NULL, NULL}};
@@ -52,7 +52,7 @@ void free_stack(monty_stack_t *stack)
 	while (stack != NULL)
 	{
 		temp = stack;
-		stack->next;
+		stack = stack->next;
 		free(temp);
 	}
 }
