@@ -7,7 +7,7 @@
  */
 void nop(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
-    (void)stack;
-    (void)line_number;
-    (void)arg;
+	(void)stack;
+	(void)line_number;
+	(void)arg;
 }

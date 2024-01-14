@@ -7,17 +7,17 @@
  */
 void swap(monty_stack_t **stack, unsigned int line_number, char *arg)
 {
-    monty_stack_t *temp;
-    (void)arg;
+	monty_stack_t *temp;
+	(void)arg;
 
-    if (*stack == NULL || (*stack)->next == NULL)
-    {
-        fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-        exit(EXIT_FAILURE);
-    }
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
-    temp = (*stack)->next;
-    (*stack)->next = temp->next;
-    temp->next = *stack;
-    *stack = temp;
+	temp = (*stack)->next;
+	(*stack)->next = temp->next;
+	temp->next = *stack;
+	*stack = temp;
 }
